@@ -9,6 +9,8 @@ Solution:
 -
 This module provides a page with a table report for any given `nid` (or `nid`s) that contains submissions still in a draft status (`is_draft` is `true`) that I can show to non-admins. 
 
+![Table showing output](./screenshot.png)
+
 How? 
 -
 Configured permissions. There is no other configuration. Simply link to `indraft/%` either from another module or in the content. 
