@@ -7,7 +7,7 @@ We typically launch surveys or other data gathering projects with Drupal 7 webfo
 
 Solution:
 -
-This module provides a table for any given `nid` (or `nid`s) that contains submissions still in a draft status (`is_draft` is `true`) that I can show to non-admins. 
+This module provides a page with a table report for any given `nid` (or `nid`s) that contains submissions still in a draft status (`is_draft` is `true`) that I can show to non-admins. 
 
 How? 
 -
@@ -15,4 +15,10 @@ Configured permissions. There is no other configuration. Simply link to `indraft
 
 ```
 <a href="indraft/X">See drafts</a>
+<a href="indraft/131">See drafts</a>
+```
+Or to link to multiple node-ids with a comma
+```
+<a href="indraft/X,Y,Z">See drafts</a>
+<a href="indraft/8,1,434">See all drafts</a>
 ```
