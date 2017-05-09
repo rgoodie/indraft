@@ -1,0 +1,95 @@
+<?php
+/**
+ * Module: Displays draft submissions not yet completed.
+ */
+
+
+/**
+ * Implements hook_permission().
+ */
+function indraft_permission() {
+	return array(
+		'administer indraft' => array(
+			'title' => t('Administer Indraft'),
+			'description' => t('Perform administration tasks for In Draft/**/'),
+		),
+		'see indraft report' => array(
+			'title' => t('See InDraft Reports'),
+			'description' => t('Lets the person see who is still in draft status'),
+		),
+	);
+}
+
+
+/**
+ * Implements hook_menu().
+ */
+function indraft_menu() {
+
+	$items['indraft/%'] = array(
+		'title' => 'InDraft Status',
+		'page callback' => '_indraft_draft_report',
+		'page arguments' => array(1),
+		'access arguments' => array('see indraft report'),
+		'type' => MENU_NORMAL_ITEM,
+	);
+
+	return $items;
+}
+
+/**
+ * Produces a render array of a table that shows webform submissions
+ * that are still in draft status.
+ */
+function _indraft_draft_report($nid_collection) {
+
+	// refernece outside module function
+	module_load_include('inc', 'webform', 'includes/webform.submissions');
+
+	$rows = array();
+
+	// Query form submissions based on nid. Break apart a comma separated
+	// value in $nid_collections if necessary and build a tabled based
+	// render array to display
+	foreach (explode(',', $nid_collection) as $nid) {
+
+		// query for webform submissions using nid and true is_draft
+		$results = webform_get_submissions(array(
+			'nid' => $nid,
+			'is_draft' => 1,
+		));
+
+		// load node for reference
+		$node = node_load($nid);
+
+		// loop through webform submissions one by one.
+		foreach ($results as $k => $v) {
+
+			$user = user_load($v->uid);
+			$name = (isset($user->realname)) ? $user->realname : $user->name;
+
+			$rows[] = array(
+				'Form Title' => l($node->title, 'node/' . $nid),
+				'Name' => l($name, 'mailto:' . $user->mail),
+				'Modified' => format_date($v->modified),
+				'Submitted' => format_date($v->submitted),
+				'modified_ts' => $v->modified,
+
+			);
+
+		}
+	}
+
+	// sort row
+	usort($rows, function ($a, $b) {
+		return $b['modified_ts'] - $a['modified_ts'];
+	});
+
+
+	// return a table as a render array
+	return array(
+		'#theme' => 'table',
+		'#header' => array_keys($rows[0]),
+		'#rows' => $rows,
+	);
+}

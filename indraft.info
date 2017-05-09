@@ -1,0 +1,8 @@
+name ="In Draft"
+description = "Displays draft submissions not yet completed"
+core = "7.x"
+package = "default package" 
+version = "7.x-1.0"
+
+
+dependencies[]=webform
