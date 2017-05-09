@@ -9,10 +9,13 @@
  */
 function indraft_permission() {
 	return array(
-		'administer indraft' => array(
-			'title' => t('Administer Indraft'),
-			'description' => t('Perform administration tasks for In Draft/**/'),
-		),
+
+		// If this ever requires an admin console, use this permission. If not
+		// then just leave it out for now. 
+		//		'administer indraft' => array(
+		//			'title' => t('Administer Indraft'),
+		//			'description' => t('Perform administration tasks for In Draft/**/'),
+		//		),
 		'see indraft report' => array(
 			'title' => t('See InDraft Reports'),
 			'description' => t('Lets the person see who is still in draft status'),
