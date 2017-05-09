@@ -7,7 +7,7 @@ We typically launch surveys or other data gathering projects with Drupal 7 webfo
 
 Solution:
 -
-This module provides a page with a table report for any given `nid` (or `nid`s) that contains submissions still in a draft status (`is_draft` is `true`) that I can show to non-admins. 
+This module provides a page with a table report for any given `nid` (or `nid`s) that contains submissions still in a draft status (`is_draft` is `true`) that we can show to non-admins. 
 
 ![Table showing output](./screenshot.png)
 
