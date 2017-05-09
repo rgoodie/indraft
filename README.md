@@ -13,7 +13,9 @@ This module provides a page with a table report for any given `nid` (or `nid`s) 
 
 How? 
 -
-Configured permissions. There is no other configuration. Simply link to `indraft/%` either from another module or in the content. 
+`git clone` this repo to `sites/all/modules/custom`. Configure permissions. There is no other configuration. 
+
+Elsewhere link to `indraft/%` either from another module or in the content. 
 
 ```
 <a href="indraft/X">See drafts</a>
